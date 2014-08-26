@@ -3,7 +3,7 @@ package Rendering;
 import GameObjects.GameObject;
 
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
+import java.awt.image.DataBufferInt;
 import java.util.ArrayList;
 
 /**
@@ -12,10 +12,11 @@ import java.util.ArrayList;
 public class RenderingEngine
 {
 
+
     private Display m_Display;
     private ArrayList<GameObject> m_objectsToBeRendered;
     private BufferedImage m_image;
-    private byte[] m_pixelArray;
+    private int[] m_pixelArray;
 
     public RenderingEngine(Display display)
     {
@@ -23,7 +24,7 @@ public class RenderingEngine
         m_objectsToBeRendered = new ArrayList<GameObject>();
 
         m_image = new BufferedImage(m_Display.getWidth(), m_Display.getHeight(), BufferedImage.TYPE_INT_ARGB);
-        m_pixelArray = ((DataBufferByte)m_image.getRaster().getDataBuffer()).getData();
+        m_pixelArray = ((DataBufferInt)m_image.getRaster().getDataBuffer()).getData();
     }
 
     public void addToRender(GameObject go)
@@ -33,7 +34,16 @@ public class RenderingEngine
 
     public void render()
     {
+        for (int i = 0 ; i < m_pixelArray.length ; i++)
+        {
+            m_pixelArray[i] = Integer.MIN_VALUE;
+        }
+        m_Display.swapBuffers(m_image);
+        //TODO : do the rendering to the image
+    }
 
+    public Display getDisplay() {
+        return m_Display;
     }
 
 }
