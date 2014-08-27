@@ -7,6 +7,17 @@ import java.util.Arrays;
  */
 public class Bitmap
 {
+    public static final int RED       = 0xFFFF0000;
+    public static final int GREEN     = 0xFF00FF00;
+    public static final int BLUE      = 0xFF000000;
+    public static final int WHITE     = 0xFFFFFFFF;
+    public static final int BLACK     = 0x00000000;
+    public static final int GREY      = 0xFF808080;
+    public static final int YELLOW    = 0xFFFFFF00;
+    public static final int CYAN      = 0xFF00FFFF;
+    public static final int PURPLE    = 0xFFFF00FF;
+
+
     private int m_width;
     private int m_height;
     private int[] m_pixels;
@@ -20,7 +31,8 @@ public class Bitmap
 
     public void drawPixel(int x, int y, byte a, byte r, byte g, byte b)
     {
-        m_pixels[x + y * m_width] = createPixel(a, r, g, b);
+
+        drawPixel(x, y, createPixel(a,r,g,b));
     }
 
     public void fill(int colour)
@@ -28,12 +40,21 @@ public class Bitmap
         Arrays.fill(m_pixels, colour);
     }
 
-    public void drawPixel(int x, int y, int colour)
+    public void fill( byte a, byte r, byte g, byte b)
     {
-        m_pixels[x + y * m_width] = colour;
+        Arrays.fill(m_pixels, createPixel(a, r, g, b));
     }
 
-    private int createPixel(int a, int r,int  g,int  b )
+    public void drawPixel(int x, int y, int colour) {
+        if (x >= m_width || y >= m_height)
+        {
+            return;
+        }
+        m_pixels[x + y * m_width] = colour;
+
+    }
+
+    public int createPixel(int a, int r,int  g,int  b )
     {
         int a1 = a << 24;
         int r1 = r << 16;
@@ -49,5 +70,20 @@ public class Bitmap
     public void setPixels(int[] pixels)
     {
         m_pixels = pixels;
+    }
+
+    public void drawRect(int x, int y, int sx, int sy, int colour)
+    {
+        if (((x + sx) >= m_width) || ((y + sy) >= m_height))
+        {
+            return;
+        }
+        for(int j = y ; j <= (y + sy); j++ )
+        {
+            for(int i = x; i <= (x + sx) ; i++)
+            {
+                drawPixel(j, i , colour);
+            }
+        }
     }
 }

@@ -28,7 +28,7 @@ public class RenderingEngine
         m_image = new BufferedImage(m_Display.getWidth(), m_Display.getHeight(), BufferedImage.TYPE_INT_ARGB);
         m_pixelArray = new Bitmap(m_Display.getWidth(), m_Display.getHeight());
 
-        m_pixelArray.setPixels(((DataBufferInt)m_image.getRaster().getDataBuffer()).getData());
+        m_pixelArray.setPixels(((DataBufferInt) m_image.getRaster().getDataBuffer()).getData());
     }
 
     public void addToRender(GameObject go)
@@ -36,15 +36,19 @@ public class RenderingEngine
         m_objectsToBeRendered.add(go);
     }
 
+    private int count;
+    private int x;
+
     public void render()
     {
-        for (int j = 0 ; j < m_Display.getHeight(); j++)
-        {
-            for (int i = 0 ; i < m_Display.getWidth() ; i++)
-            {
-                m_pixelArray.drawPixel(i, j, r.nextInt());
-            }
-        }
+        m_pixelArray.fill(Bitmap.GREY);
+        m_pixelArray.drawRect(x , x, 10, 10, Bitmap.CYAN);
+       if (count % 1 == 0)
+       {
+           x++;
+           count = 0;
+       }
+       count++;
         m_Display.swapBuffers(m_image);
         //TODO : do the rendering to the image
     }
