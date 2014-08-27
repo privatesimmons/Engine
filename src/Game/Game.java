@@ -9,8 +9,8 @@ import Rendering.RenderingEngine;
  */
 public class Game
 {
-    private final int WIDTH = 500;
-    private final int HEIGHT = 500;
+    private final int WIDTH = 800;
+    private final int HEIGHT = 600;
 
     private RenderingEngine m_renderingEngine;
 

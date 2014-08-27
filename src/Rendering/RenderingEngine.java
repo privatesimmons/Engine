@@ -17,7 +17,7 @@ public class RenderingEngine
     private Display m_Display;
     private ArrayList<GameObject> m_objectsToBeRendered;
     private BufferedImage m_image;
-    private int[] m_pixelArray;
+    private Bitmap m_pixelArray;
 
     Random r = new Random();
 
@@ -25,9 +25,10 @@ public class RenderingEngine
     {
         m_Display = display;
         m_objectsToBeRendered = new ArrayList<GameObject>();
-
         m_image = new BufferedImage(m_Display.getWidth(), m_Display.getHeight(), BufferedImage.TYPE_INT_ARGB);
-        m_pixelArray = ((DataBufferInt)m_image.getRaster().getDataBuffer()).getData();
+        m_pixelArray = new Bitmap(m_Display.getWidth(), m_Display.getHeight());
+
+        m_pixelArray.setPixels(((DataBufferInt)m_image.getRaster().getDataBuffer()).getData());
     }
 
     public void addToRender(GameObject go)
@@ -37,9 +38,12 @@ public class RenderingEngine
 
     public void render()
     {
-        for (int i = 0 ; i < m_pixelArray.length ; i++)
+        for (int j = 0 ; j < m_Display.getHeight(); j++)
         {
-            m_pixelArray[i] = r.nextInt();
+            for (int i = 0 ; i < m_Display.getWidth() ; i++)
+            {
+                m_pixelArray.drawPixel(i, j, r.nextInt());
+            }
         }
         m_Display.swapBuffers(m_image);
         //TODO : do the rendering to the image
