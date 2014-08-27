@@ -16,7 +16,7 @@ public class RenderingEngine
 
     private Display m_Display;
     private ArrayList<GameObject> m_objectsToBeRendered;
-    private BufferedImage m_image;
+    private BufferedImage m_screenBuffer;
     private Bitmap m_pixelArray;
 
     Random r = new Random();
@@ -25,10 +25,10 @@ public class RenderingEngine
     {
         m_Display = display;
         m_objectsToBeRendered = new ArrayList<GameObject>();
-        m_image = new BufferedImage(m_Display.getWidth(), m_Display.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        m_screenBuffer = new BufferedImage(m_Display.getWidth(), m_Display.getHeight(), BufferedImage.TYPE_INT_ARGB);
         m_pixelArray = new Bitmap(m_Display.getWidth(), m_Display.getHeight());
 
-        m_pixelArray.setPixels(((DataBufferInt) m_image.getRaster().getDataBuffer()).getData());
+        m_pixelArray.setPixels(((DataBufferInt) m_screenBuffer.getRaster().getDataBuffer()).getData());
     }
 
     public void addToRender(GameObject go)
@@ -36,20 +36,14 @@ public class RenderingEngine
         m_objectsToBeRendered.add(go);
     }
 
-    private int count;
-    private int x;
+
 
     public void render()
     {
-        m_pixelArray.fill(Bitmap.GREY);
-        m_pixelArray.drawRect(x , x, 10, 10, Bitmap.CYAN);
-       if (count % 1 == 0)
-       {
-           x++;
-           count = 0;
-       }
-       count++;
-        m_Display.swapBuffers(m_image);
+        m_pixelArray.fill(Bitmap.CYAN);
+        m_pixelArray.drawRect(10 , 10, 10, 10, Bitmap.BLACK);
+
+        m_Display.swapBuffers(m_screenBuffer);
         //TODO : do the rendering to the image
     }
 

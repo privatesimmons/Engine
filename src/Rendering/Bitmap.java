@@ -16,11 +16,16 @@ public class Bitmap
     public static final int YELLOW    = 0xFFFFFF00;
     public static final int CYAN      = 0xFF00FFFF;
     public static final int PURPLE    = 0xFFFF00FF;
+    public static final int TRANS     = 0xFFFEFEFE;
 
+    protected int m_width;
+    protected int m_height;
+    protected int[] m_pixels;
 
-    private int m_width;
-    private int m_height;
-    private int[] m_pixels;
+    public Bitmap()
+    {
+
+    }
 
     public Bitmap(int width, int height)
     {
@@ -86,4 +91,10 @@ public class Bitmap
             }
         }
     }
+
+    public void drawSprite(int x, int y, Sprite sprite)
+    {
+
+    }
+
 }
