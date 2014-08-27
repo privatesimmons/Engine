@@ -14,5 +14,6 @@ public class SpriteTest extends GameObject
         m_sx = sx;
         m_sy = sy;
         m_sprite = new Sprite(filename);
+
     }
 }
