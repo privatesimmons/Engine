@@ -1,8 +1,6 @@
 package Game;
 
-/**
- * Created by Damien on 24/8/2014.
- */
+
 public class Main
 {
     private static Game game;
@@ -10,9 +8,12 @@ public class Main
     public static void main(String[] args)
     {
      game = new Game();
-     while (true)
+     while (game.getRunning())
      {
+         long start = System.nanoTime();
          game.render();
+         long end = System.nanoTime();
+         System.out.println(((end - start)/ 1000000.0));
      }
     }
 }

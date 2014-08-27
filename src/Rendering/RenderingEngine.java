@@ -5,6 +5,7 @@ import GameObjects.GameObject;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Damien on 24/8/2014.
@@ -17,6 +18,8 @@ public class RenderingEngine
     private ArrayList<GameObject> m_objectsToBeRendered;
     private BufferedImage m_image;
     private int[] m_pixelArray;
+
+    Random r = new Random();
 
     public RenderingEngine(Display display)
     {
@@ -36,7 +39,7 @@ public class RenderingEngine
     {
         for (int i = 0 ; i < m_pixelArray.length ; i++)
         {
-            m_pixelArray[i] = Integer.MIN_VALUE;
+            m_pixelArray[i] = r.nextInt();
         }
         m_Display.swapBuffers(m_image);
         //TODO : do the rendering to the image
