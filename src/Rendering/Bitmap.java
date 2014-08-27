@@ -67,6 +67,12 @@ public class Bitmap
         int b1 = b;
         return a1 + r1 + g1 + b1;
     }
+
+    public int getPixel(int x, int y)
+    {
+        return m_pixels[x + y * m_width];
+    }
+
     public int[] getPixels()
     {
         return m_pixels;
@@ -94,7 +100,24 @@ public class Bitmap
 
     public void drawSprite(int x, int y, Sprite sprite)
     {
-
+        for(int j = y; j < (y + sprite.getHeight()) ; j++)
+        {
+            for (int i = x; i < (x + sprite.getWidth()); i++)
+            {
+                if (!(sprite.getPixel(i - x, j - y) == Bitmap.TRANS))
+                {
+                    drawPixel(i,j, sprite.getPixel(i - x, j - y));
+                }
+            }
+        }
     }
 
+
+    public int getWidth() {
+        return m_width;
+    }
+
+    public int getHeight() {
+        return m_height;
+    }
 }

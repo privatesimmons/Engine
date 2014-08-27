@@ -12,21 +12,26 @@ import java.io.IOException;
  */
 public class Sprite extends Bitmap
 {
-    BufferedImage m_Image;
+    BufferedImage m_image;
 
     public Sprite(String filename)
     {
         try {
 
-            BufferedImage temp = ImageIO.read(new File(filename));
-            m_width = temp.getWidth();
-            m_height = temp.getHeight();
-            m_Image = new BufferedImage(m_width, m_height, BufferedImage.TYPE_INT_ARGB);
-            Graphics g = m_Image.getGraphics();
-            g.drawImage(temp, 0,0, null);
+            File f = new File(filename);
+            if(f.exists() && !f.isDirectory())
+            {
+                BufferedImage temp = ImageIO.read(f);
+                m_width = temp.getWidth();
+                m_height = temp.getHeight();
+                m_image = new BufferedImage(m_width, m_height, BufferedImage.TYPE_INT_ARGB);
+                Graphics g = m_image.getGraphics();
+                g.drawImage(temp, 0, 0, null);
 
-            this.setPixels( ((DataBufferInt)m_Image.getRaster().getDataBuffer()).getData());
-
+                this.setPixels(((DataBufferInt) m_image.getRaster().getDataBuffer()).getData());
+            }
+            else
+                System.out.println("Couldnt find file");
         } catch (IOException e) {
             e.printStackTrace();
         }
