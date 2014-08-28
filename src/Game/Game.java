@@ -17,20 +17,24 @@ public class Game
     private final int HEIGHT = 600;
 
     private RenderingEngine m_renderingEngine;
+    private Input m_inputClass;
     private ArrayList<GameObject> m_objectList;
     private Boolean running;
+    private int[] m_input;
 
     public Game()
     {
-        m_renderingEngine = new RenderingEngine(new Display(WIDTH, HEIGHT, "Hello World"));
-        m_objectList = new ArrayList<GameObject>();
         this.init();
         running = true;
     }
 
     private void init()
     {
-        m_objectList.add(new SpriteTest( 30, 30, 20, 20, "res/blackSquare.bmp","res/redSquare.bmp" ));
+        m_renderingEngine = new RenderingEngine(new Display(WIDTH, HEIGHT, "Hello World"));
+        m_objectList = new ArrayList<GameObject>();
+        m_inputClass = new Input();
+        m_renderingEngine.getDisplay().addKeyListener(m_inputClass);
+        m_objectList.add(new SpriteTest( 30, 30, 20, 20, this,"res/blackSquare.bmp","res/redSquare.bmp" ));
     }
 
     public void update()
@@ -49,6 +53,17 @@ public class Game
         }
         m_renderingEngine.render();
     }
+
+    public int[] getInput()
+    {
+        return m_input;
+    }
+
+    public void setInput()
+    {
+        m_input = m_inputClass.getInput();
+    }
+
 
     public Boolean getRunning()
     {

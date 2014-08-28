@@ -10,6 +10,7 @@ import java.util.Random;
 /**
  * Created by Damien on 24/8/2014.
  */
+
 public class RenderingEngine
 {
 
@@ -62,7 +63,6 @@ public class RenderingEngine
         }
 
         m_Display.swapBuffers(m_screenBuffer);
-        //TODO : do the rendering to the image
     }
 
     public Display getDisplay() {

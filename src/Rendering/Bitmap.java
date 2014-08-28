@@ -51,7 +51,7 @@ public class Bitmap
     }
 
     public void drawPixel(int x, int y, int colour) {
-        if (x >= m_width || y >= m_height)
+        if (x > m_width || y > m_height || x < 0 || y < 0)
         {
             return;
         }

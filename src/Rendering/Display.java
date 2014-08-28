@@ -2,6 +2,8 @@ package Rendering;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
@@ -14,7 +16,6 @@ public class Display extends Canvas
     private BufferStrategy m_bufferStrategy;
     private Graphics m_graphics;
 
-
     public Display(int width, int height, String title)
     {
 
@@ -25,12 +26,13 @@ public class Display extends Canvas
         m_frame.add(this);
         m_frame.setResizable(false);
         m_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        m_frame.setLocationRelativeTo(null);
+        m_frame.setLocation(100,100);
         m_frame.pack();
 
         this.createBufferStrategy(1);
         m_bufferStrategy = this.getBufferStrategy();
         m_graphics = m_bufferStrategy.getDrawGraphics();
+
 
         m_frame.setVisible(true);
     }
@@ -40,4 +42,7 @@ public class Display extends Canvas
         m_graphics.drawImage(image, 0,0,image.getWidth(), image.getHeight(), null);
         m_bufferStrategy.show();
     }
+
+
+
 }

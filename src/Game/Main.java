@@ -11,6 +11,7 @@ public class Main
      while (game.getRunning())
      {
          long start = System.nanoTime();
+         game.setInput();
          game.update();
          game.render();
          long end = System.nanoTime();
