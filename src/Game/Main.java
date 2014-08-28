@@ -11,6 +11,7 @@ public class Main
      while (game.getRunning())
      {
          long start = System.nanoTime();
+         game.update();
          game.render();
          long end = System.nanoTime();
          System.out.println(((end - start)/ 1000000.0));

@@ -30,12 +30,15 @@ public class Game
 
     private void init()
     {
-        m_objectList.add(new SpriteTest( 30, 30, 20, 20, "res/blackSquare.bmp"));
+        m_objectList.add(new SpriteTest( 30, 30, 20, 20, "res/blackSquare.bmp","res/redSquare.bmp" ));
     }
 
     public void update()
     {
-
+        for(int i = 0; i < m_objectList.size(); i++ )
+        {
+            m_objectList.get(i).update();
+        }
     }
 
     public void render()
