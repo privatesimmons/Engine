@@ -11,7 +11,7 @@ public class Bitmap
     public static final int GREEN     = 0xFF00FF00;
     public static final int BLUE      = 0xFF000000;
     public static final int WHITE     = 0xFFFFFFFF;
-    public static final int BLACK     = 0x00000000;
+    public static final int BLACK     = 0xFF000000;
     public static final int GREY      = 0xFF808080;
     public static final int YELLOW    = 0xFFFFFF00;
     public static final int CYAN      = 0xFF00FFFF;
