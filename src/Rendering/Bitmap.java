@@ -15,8 +15,9 @@ public class Bitmap
     public static final int GREY      = 0xFF808080;
     public static final int YELLOW    = 0xFFFFFF00;
     public static final int CYAN      = 0xFF00FFFF;
-    public static final int PURPLE    = 0xFFFF00FF;
+    public static final int PINK      = 0xFFFF00FF;
     public static final int TRANS     = 0xFFFEFEFE;
+    public static final int PURPLE    = 0xFF800080;
 
     protected int m_width;
     protected int m_height;
@@ -51,7 +52,7 @@ public class Bitmap
     }
 
     public void drawPixel(int x, int y, int colour) {
-        if (x > m_width || y > m_height || x < 0 || y < 0)
+        if (x > m_width || y >= m_height || x < 0 || y < 0)
         {
             return;
         }
