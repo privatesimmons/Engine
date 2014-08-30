@@ -7,6 +7,7 @@ import java.util.Arrays;
  */
 public class Bitmap
 {
+    @SuppressWarnings(value = "colours")
     public static final int RED       = 0xFFFF0000;
     public static final int GREEN     = 0xFF00FF00;
     public static final int BLUE      = 0xFF000000;

@@ -17,7 +17,7 @@ public abstract class GameObject
         renderingEngine.addToRender(this);
     }
 
-    public void update()
+    public void update(int delta)
     {
 
     }

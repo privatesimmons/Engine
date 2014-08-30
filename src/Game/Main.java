@@ -8,13 +8,18 @@ public class Main
     public static void main(String[] args)
     {
      game = new Game();
+     long start, end ;
+     int delta;
+     delta = 0;
+
      while (game.getRunning())
      {
-         long start = System.nanoTime();
+         start = System.nanoTime();
          game.setInput();
-         game.update();
+         game.update(delta);
          game.render();
-         long end = System.nanoTime();
+         end = System.nanoTime();
+         delta = (int)((end - start)/ 1000000.0);
          System.out.println(((end - start)/ 1000000.0));
      }
     }

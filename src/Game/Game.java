@@ -34,11 +34,11 @@ public class Game
         m_objectList.add(new SpriteTest( 30, 30, 20, 20, this,"res/blackSquare.bmp","res/redSquare.bmp" ));
     }
 
-    public void update()
+    public void update(int delta)
     {
         for(int i = 0; i < m_objectList.size(); i++ )
         {
-            m_objectList.get(i).update();
+            m_objectList.get(i).update(delta);
         }
     }
 

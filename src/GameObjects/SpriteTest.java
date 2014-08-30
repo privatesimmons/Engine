@@ -26,23 +26,23 @@ public class SpriteTest extends GameObject
         m_sprite = m_sprites[0];
     }
 
-    public void update()
+    public void update(int delta)
     {
         for(int i = 0; i < m_game.getInput().length ; i++)
         {
             switch (m_game.getInput()[i])
             {
                 case KeyEvent.VK_UP:
-                    m_y-=2;
+                    m_y-= ( delta / 2);
                     break;
                 case KeyEvent.VK_DOWN:
-                    m_y+=2;
+                    m_y+= ( delta / 2);
                     break;
                 case KeyEvent.VK_RIGHT:
-                    m_x+=2;
+                    m_x+= ( delta / 2);
                     break;
                 case KeyEvent.VK_LEFT:
-                    m_x-=2;
+                    m_x-= ( delta / 2);
                     break;
             }
         }
