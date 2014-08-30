@@ -17,7 +17,6 @@ public class Game
     private final int HEIGHT = 600;
 
     private RenderingEngine m_renderingEngine;
-    private Input m_inputClass;
     private ArrayList<GameObject> m_objectList;
     private Boolean running;
     private int[] m_input;
@@ -32,8 +31,6 @@ public class Game
     {
         m_renderingEngine = new RenderingEngine(new Display(WIDTH, HEIGHT, "Hello World"));
         m_objectList = new ArrayList<GameObject>();
-        m_inputClass = new Input();
-        m_renderingEngine.getDisplay().addKeyListener(m_inputClass);
         m_objectList.add(new SpriteTest( 30, 30, 20, 20, this,"res/blackSquare.bmp","res/redSquare.bmp" ));
     }
 
@@ -61,7 +58,7 @@ public class Game
 
     public void setInput()
     {
-        m_input = m_inputClass.getInput();
+        m_input = m_renderingEngine.getDisplay().getInputClass().getInput();
     }
 
 

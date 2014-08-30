@@ -1,5 +1,7 @@
 package Rendering;
 
+import Game.Input;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -15,6 +17,7 @@ public class Display extends Canvas
     private JFrame m_frame;
     private BufferStrategy m_bufferStrategy;
     private Graphics m_graphics;
+    private Input m_inputClass;
 
     public Display(int width, int height, String title)
     {
@@ -32,9 +35,10 @@ public class Display extends Canvas
         this.createBufferStrategy(1);
         m_bufferStrategy = this.getBufferStrategy();
         m_graphics = m_bufferStrategy.getDrawGraphics();
-
-
+        m_inputClass = new Input();
+        addKeyListener(m_inputClass);
         m_frame.setVisible(true);
+        requestFocus();
     }
 
     public void swapBuffers(BufferedImage image)
@@ -43,6 +47,9 @@ public class Display extends Canvas
         m_bufferStrategy.show();
     }
 
-
+    public Input getInputClass()
+    {
+        return m_inputClass;
+    }
 
 }
