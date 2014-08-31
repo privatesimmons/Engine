@@ -21,6 +21,7 @@ public class Game
     private ArrayList<GameObject> m_objectList;
     private Boolean running;
     private Input m_input;
+    private Player m_player;
 
     public Game()
     {
@@ -33,7 +34,8 @@ public class Game
         m_input = new Input();
         m_renderingEngine = new RenderingEngine(new Display(m_input ,WIDTH, HEIGHT,"Hello World"));
         m_objectList = new ArrayList<GameObject>();
-        m_objectList.add(new Player(30, 30, "res/man.bmp",this));
+        m_player = new Player(30, 30, "res/man.bmp",this);
+        m_objectList.add(m_player);
     }
 
     public void update(int delta)
@@ -66,5 +68,10 @@ public class Game
     public int getDisplayHeight()
     {
         return this.m_renderingEngine.getDisplay().getHeight();
+    }
+
+    public Player getPlayer()
+    {
+        return m_player;
     }
 }

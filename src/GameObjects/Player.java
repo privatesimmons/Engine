@@ -12,6 +12,7 @@ import Game.Game;
 public class Player extends GameObject
 {
     private Game m_game;
+    private int m_health;
 
     public Player(int x, int y, String filename, Game game)
     {
@@ -59,5 +60,13 @@ public class Player extends GameObject
         }
 
 
+    }
+
+    public int getHealth() {
+        return m_health;
+    }
+
+    public void setHealth(int m_health) {
+        this.m_health = m_health;
     }
 }
