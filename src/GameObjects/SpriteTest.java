@@ -2,6 +2,7 @@ package GameObjects;
 
 import Rendering.Sprite;
 import  Game.Game;
+import Game.Input;
 
 import java.awt.event.KeyEvent;
 
@@ -12,25 +13,23 @@ public class SpriteTest extends GameObject
 {
     private Sprite[] m_sprites;
     private int m_spriteCounter;
-    private Game m_game;
-    public SpriteTest(int x, int y, int sx, int sy, Game game ,String filename, String filename2)
+    public SpriteTest(int x, int y, int sx, int sy ,String filename, String filename2)
     {
         m_x = x;
         m_y = y;
         m_sx = sx;
-        m_sy = sy;
-        m_game = game;
+        m_sy = sy;;
         m_sprites = new Sprite[2];
         m_sprites[0] = new Sprite(filename);
         m_sprites[1] = new Sprite(filename2);
         m_sprite = m_sprites[0];
     }
 
-    public void update(int delta)
+    public void update(Input input,int delta)
     {
-        for(int i = 0; i < m_game.getInput().length ; i++)
+        for(int i = 0; i < input.getInput().length ; i++)
         {
-            switch (m_game.getInput()[i])
+            switch (input.getInput()[i])
             {
                 case KeyEvent.VK_UP:
                     m_y-= ( delta / 2);

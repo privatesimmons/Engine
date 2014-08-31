@@ -19,7 +19,7 @@ public class Display extends Canvas
     private Graphics m_graphics;
     private Input m_inputClass;
 
-    public Display(int width, int height, String title)
+    public Display(Input input ,int width, int height, String title)
     {
 
 
@@ -36,9 +36,9 @@ public class Display extends Canvas
         m_bufferStrategy = this.getBufferStrategy();
         m_graphics = m_bufferStrategy.getDrawGraphics();
         m_inputClass = new Input();
-        addKeyListener(m_inputClass);
-        m_frame.setVisible(true);
+        addKeyListener(input);
         requestFocus();
+        m_frame.setVisible(true);
     }
 
     public void swapBuffers(BufferedImage image)

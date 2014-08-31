@@ -1,5 +1,6 @@
 package GameObjects;
 
+import Game.Input;
 import Rendering.RenderingEngine;
 import Rendering.Sprite;
 
@@ -17,7 +18,7 @@ public abstract class GameObject
         renderingEngine.addToRender(this);
     }
 
-    public void update(int delta)
+    public void update(Input input,int delta)
     {
 
     }

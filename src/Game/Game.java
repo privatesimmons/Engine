@@ -19,7 +19,7 @@ public class Game
     private RenderingEngine m_renderingEngine;
     private ArrayList<GameObject> m_objectList;
     private Boolean running;
-    private int[] m_input;
+    private Input m_input;
 
     public Game()
     {
@@ -29,16 +29,17 @@ public class Game
 
     private void init()
     {
-        m_renderingEngine = new RenderingEngine(new Display(WIDTH, HEIGHT, "Hello World"));
+        m_input = new Input();
+        m_renderingEngine = new RenderingEngine(new Display(m_input ,WIDTH, HEIGHT,"Hello World"));
         m_objectList = new ArrayList<GameObject>();
-        m_objectList.add(new SpriteTest( 30, 30, 20, 20, this,"res/blackSquare.bmp","res/redSquare.bmp" ));
+        m_objectList.add(new SpriteTest( 30, 30, 20, 20,"res/blackSquare.bmp","res/redSquare.bmp" ));
     }
 
     public void update(int delta)
     {
         for(int i = 0; i < m_objectList.size(); i++ )
         {
-            m_objectList.get(i).update(delta);
+            m_objectList.get(i).update(m_input ,delta);
         }
     }
 
@@ -49,16 +50,6 @@ public class Game
             m_objectList.get(i).render(m_renderingEngine);
         }
         m_renderingEngine.render();
-    }
-
-    public int[] getInput()
-    {
-        return m_input;
-    }
-
-    public void setInput()
-    {
-        m_input = m_renderingEngine.getDisplay().getInputClass().getInput();
     }
 
 
