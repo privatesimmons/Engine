@@ -24,11 +24,6 @@ public class Main
 
          endrender = System.nanoTime();
 
-         try {
-             Thread.sleep(10);
-         } catch (InterruptedException e) {
-             e.printStackTrace();
-         }
          end = System.nanoTime();
          delta = (int)((end - start)/ 1000000.0);
          System.out.println("update time : " + ((endupdate- start) / 1000000.0) );
