@@ -27,25 +27,6 @@ public class SpriteTest extends GameObject
 
     public void update(Input input,int delta)
     {
-        for(int i = 0; i < input.getInput().length ; i++)
-        {
-            switch (input.getInput()[i])
-            {
-                case KeyEvent.VK_UP:
-                    m_y-= ( delta / 2);
-                    break;
-                case KeyEvent.VK_DOWN:
-                    m_y+= ( delta / 2);
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    m_x+= ( delta / 2);
-                    break;
-                case KeyEvent.VK_LEFT:
-                    m_x-= ( delta / 2);
-                    break;
-            }
-        }
-
 
         m_spriteCounter++;
         m_sprite = m_sprites[m_spriteCounter % 2];

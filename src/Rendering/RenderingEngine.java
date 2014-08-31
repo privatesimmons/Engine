@@ -41,8 +41,8 @@ public class RenderingEngine
 
     public void render()
     {
-        m_pixelArray.fill(Bitmap.PURPLE);
-        m_pixelArray.drawRect(10 , 10, 10, 10, Bitmap.BLACK);
+        m_pixelArray.fill(Bitmap.BLACK);
+//        m_pixelArray.drawRect(10 , 10, 10, 10, Bitmap.BLACK);
 
         for(int i = 0 ; i < m_objectsToBeRendered.size(); i++)
         {

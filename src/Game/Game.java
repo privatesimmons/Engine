@@ -1,6 +1,7 @@
 package Game;
 
 import GameObjects.GameObject;
+import GameObjects.Player;
 import GameObjects.SpriteTest;
 import Rendering.Display;
 import Rendering.RenderingEngine;
@@ -32,7 +33,7 @@ public class Game
         m_input = new Input();
         m_renderingEngine = new RenderingEngine(new Display(m_input ,WIDTH, HEIGHT,"Hello World"));
         m_objectList = new ArrayList<GameObject>();
-        m_objectList.add(new SpriteTest( 30, 30, 20, 20,"res/blackSquare.bmp","res/redSquare.bmp" ));
+        m_objectList.add(new Player(30, 30, "res/man.bmp",this));
     }
 
     public void update(int delta)
@@ -52,10 +53,18 @@ public class Game
         m_renderingEngine.render();
     }
 
-
     public Boolean getRunning()
     {
         return running;
     }
 
+    public int getDisplayWidth()
+    {
+        return this.m_renderingEngine.getDisplay().getWidth();
+    }
+
+    public int getDisplayHeight()
+    {
+        return this.m_renderingEngine.getDisplay().getHeight();
+    }
 }
