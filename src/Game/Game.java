@@ -3,6 +3,8 @@ package Game;
 import GameObjects.GameObject;
 import GameObjects.Player;
 import GameObjects.SpriteTest;
+import GameObjects.Swarmer;
+import Rendering.Bitmap;
 import Rendering.Display;
 import Rendering.RenderingEngine;
 
@@ -36,6 +38,13 @@ public class Game
         m_objectList = new ArrayList<GameObject>();
         m_player = new Player(30, 30, "res/man.bmp",this);
         m_objectList.add(m_player);
+        m_objectList.add(new Swarmer(90, 90,1, "res/ninja.bmp" , this));
+        m_objectList.add(new Swarmer(70, 90,1, "res/ninja.bmp" , this));
+        m_objectList.add(new Swarmer(60, 90,1, "res/ninja.bmp" , this));
+        m_objectList.add(new Swarmer(30, 90,1, "res/ninja.bmp" , this));
+        m_objectList.add(new Swarmer(500, 90,1, "res/ninja.bmp" , this));
+        m_objectList.add(new Swarmer(700, 90,1, "res/ninja.bmp" , this));
+        m_renderingEngine.setBackground(Bitmap.GREY);
     }
 
     public void update(int delta)
@@ -73,5 +82,9 @@ public class Game
     public Player getPlayer()
     {
         return m_player;
+    }
+
+    public ArrayList<GameObject> getObjectList() {
+        return m_objectList;
     }
 }

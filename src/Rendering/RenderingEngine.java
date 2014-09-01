@@ -19,6 +19,7 @@ public class RenderingEngine
     private ArrayList<GameObject> m_objectsToBeRendered;
     private BufferedImage m_screenBuffer;
     private Bitmap m_pixelArray;
+    private int m_background;
 
     Random r = new Random();
 
@@ -28,7 +29,7 @@ public class RenderingEngine
         m_objectsToBeRendered = new ArrayList<GameObject>();
         m_screenBuffer = new BufferedImage(m_Display.getWidth(), m_Display.getHeight(), BufferedImage.TYPE_INT_ARGB);
         m_pixelArray = new Bitmap(m_Display.getWidth(), m_Display.getHeight());
-
+        m_background = Bitmap.BLACK;
         m_pixelArray.setPixels(((DataBufferInt) m_screenBuffer.getRaster().getDataBuffer()).getData());
     }
 
@@ -41,9 +42,10 @@ public class RenderingEngine
 
     public void render()
     {
-        m_pixelArray.fill(Bitmap.BLACK);
+        m_pixelArray.fill(m_background);
 //        m_pixelArray.drawRect(10 , 10, 10, 10, Bitmap.BLACK);
 
+        long start = System.nanoTime();
         for(int i = 0 ; i < m_objectsToBeRendered.size(); i++)
         {
             if (!(m_objectsToBeRendered.get(i).getSprite() == null))
@@ -61,7 +63,8 @@ public class RenderingEngine
                                       m_objectsToBeRendered.get(i).getColour());
             }
         }
-
+        long end = System.nanoTime();
+        System.out.println("Draw time : " + ((end- start) / 1000000.0) );
         m_Display.swapBuffers(m_screenBuffer);
     }
 
@@ -69,4 +72,7 @@ public class RenderingEngine
         return m_Display;
     }
 
+    public void setBackground(int background) {
+        this.m_background = background;
+    }
 }
