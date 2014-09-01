@@ -65,6 +65,7 @@ public class RenderingEngine
         }
         long end = System.nanoTime();
         System.out.println("Draw time : " + ((end- start) / 1000000.0) );
+        m_objectsToBeRendered.clear();
         m_Display.swapBuffers(m_screenBuffer);
     }
 
