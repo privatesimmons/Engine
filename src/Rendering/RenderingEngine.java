@@ -61,7 +61,7 @@ public class RenderingEngine
                                       m_objectsToBeRendered.get(i).getColour());
             }
         }
-
+        m_objectsToBeRendered.clear();
         m_Display.swapBuffers(m_screenBuffer);
     }
 
