@@ -45,7 +45,6 @@ public class RenderingEngine
         m_pixelArray.fill(m_background);
 //        m_pixelArray.drawRect(10 , 10, 10, 10, Bitmap.BLACK);
 
-        long start = System.nanoTime();
         for(int i = 0 ; i < m_objectsToBeRendered.size(); i++)
         {
             if (!(m_objectsToBeRendered.get(i).getSprite() == null))
@@ -63,8 +62,6 @@ public class RenderingEngine
                                       m_objectsToBeRendered.get(i).getColour());
             }
         }
-        long end = System.nanoTime();
-        System.out.println("Draw time : " + ((end- start) / 1000000.0) );
         m_objectsToBeRendered.clear();
         m_Display.swapBuffers(m_screenBuffer);
     }

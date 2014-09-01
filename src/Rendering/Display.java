@@ -52,4 +52,7 @@ public class Display extends Canvas
         return m_inputClass;
     }
 
+    public JFrame getFrame() {
+        return m_frame;
+    }
 }

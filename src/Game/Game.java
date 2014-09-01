@@ -36,15 +36,16 @@ public class Game
         m_input = new Input();
         m_renderingEngine = new RenderingEngine(new Display(m_input ,WIDTH, HEIGHT,"Hello World"));
         m_objectList = new ArrayList<GameObject>();
-        m_player = new Player(30, 30, "res/man.bmp",this);
+        m_player = new Player(700, 500, "res/man.bmp",this);
         m_objectList.add(m_player);
         m_objectList.add(new Swarmer(90, 90,1, "res/ninja.bmp" , this));
         m_objectList.add(new Swarmer(70, 90,1, "res/ninja.bmp" , this));
         m_objectList.add(new Swarmer(60, 90,1, "res/ninja.bmp" , this));
         m_objectList.add(new Swarmer(30, 90,1, "res/ninja.bmp" , this));
         m_objectList.add(new Swarmer(500, 90,1, "res/ninja.bmp" , this));
-        m_objectList.add(new Swarmer(700, 90,1, "res/ninja.bmp" , this));
+        m_objectList.add(new Swarmer(400, 90,1, "res/ninja.bmp" , this));
         m_renderingEngine.setBackground(Bitmap.GREY);
+        m_player.setHealth(500);
     }
 
     public void update(int delta)
@@ -52,6 +53,12 @@ public class Game
         for(int i = 0; i < m_objectList.size(); i++ )
         {
             m_objectList.get(i).update(m_input ,delta);
+        }
+        m_renderingEngine.getDisplay().getFrame().setTitle(Integer.toString(m_player.getHealth()));
+        //TODO : make this better
+        if (m_player.getHealth() < 0)
+        {
+            running = false;
         }
     }
 
@@ -87,4 +94,6 @@ public class Game
     public ArrayList<GameObject> getObjectList() {
         return m_objectList;
     }
+
+    public int getFrames() {return Main.getFrames();}
 }
