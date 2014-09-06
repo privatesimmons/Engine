@@ -13,7 +13,7 @@ public class SpriteTest extends GameObject
 {
     private Sprite[] m_sprites;
     private int m_spriteCounter;
-    public SpriteTest(int x, int y, int sx, int sy ,String filename, String filename2)
+    public SpriteTest(float x, float y, float sx, float sy ,String filename, String filename2)
     {
         m_x = x;
         m_y = y;
@@ -25,23 +25,24 @@ public class SpriteTest extends GameObject
         m_sprite = m_sprites[0];
     }
 
-    public void update(Input input,int delta)
+    public void update(Input input,float delta)
     {
         for(int i = 0; i < input.getInput().length ; i++)
         {
             switch (input.getInput()[i])
             {
                 case KeyEvent.VK_UP:
-                    m_y-= ( delta / 2);
+                    debuggystuff();
+                    m_y += ( delta / 700.0f);
                     break;
                 case KeyEvent.VK_DOWN:
-                    m_y+= ( delta / 2);
+                    m_y -= ( delta / 700.0f);
                     break;
                 case KeyEvent.VK_RIGHT:
-                    m_x+= ( delta / 2);
+                    m_x+= ( delta / 700.0f);
                     break;
                 case KeyEvent.VK_LEFT:
-                    m_x-= ( delta / 2);
+                    m_x-= ( delta / 700.0f);
                     break;
             }
         }
@@ -49,5 +50,10 @@ public class SpriteTest extends GameObject
 
         m_spriteCounter++;
         m_sprite = m_sprites[m_spriteCounter % 2];
+    }
+
+    public void debuggystuff()
+    {
+        int i = 1+ 1;
     }
 }

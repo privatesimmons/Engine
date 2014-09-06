@@ -9,16 +9,23 @@ public class Main
     {
      game = new Game();
      long start, end ;
-     int delta;
+     float delta;
      delta = 0;
 
      while (game.getRunning())
      {
          start = System.nanoTime();
          game.update(delta);
+
+         try {
+             Thread.sleep(10);
+         } catch (InterruptedException e) {
+             e.printStackTrace();
+         }
+
          game.render();
          end = System.nanoTime();
-         delta = (int)((end - start)/ 1000000.0);
+         delta = ((end - start)/ 1000000.0f);
          System.out.println(((end - start)/ 1000000.0));
      }
     }

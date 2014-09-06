@@ -32,10 +32,10 @@ public class Game
         m_input = new Input();
         m_renderingEngine = new RenderingEngine(new Display(m_input ,WIDTH, HEIGHT,"Hello World"));
         m_objectList = new ArrayList<GameObject>();
-        m_objectList.add(new SpriteTest( 30, 30, 20, 20,"res/blackSquare.bmp","res/redSquare.bmp" ));
+        m_objectList.add(new SpriteTest( -0.5f, -0.5f, 0.1f, 0.1f,"res/blackSquare.bmp","res/redSquare.bmp" ));
     }
 
-    public void update(int delta)
+    public void update(float delta)
     {
         for(int i = 0; i < m_objectList.size(); i++ )
         {

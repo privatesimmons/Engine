@@ -9,7 +9,7 @@ import Rendering.Sprite;
  */
 public abstract class GameObject
 {
-    protected int m_x, m_y, m_sx, m_sy;
+    protected float m_x, m_y, m_sx, m_sy;
     protected int m_colour;
     protected Sprite m_sprite;
 
@@ -18,12 +18,12 @@ public abstract class GameObject
         renderingEngine.addToRender(this);
     }
 
-    public void update(Input input,int delta)
+    public void update(Input input,float delta)
     {
 
     }
 
-    public int getX() {
+    public float getX() {
         return m_x;
     }
 
@@ -31,7 +31,7 @@ public abstract class GameObject
         this.m_x = m_x;
     }
 
-    public int getY() {
+    public float getY() {
         return m_y;
     }
 
@@ -39,7 +39,7 @@ public abstract class GameObject
         this.m_y = m_y;
     }
 
-    public int getSX() {
+    public float getSX() {
         return m_sx;
     }
 
@@ -47,7 +47,7 @@ public abstract class GameObject
         this.m_sx = m_sx;
     }
 
-    public int getSY() {
+    public float getSY() {
         return m_sy;
     }
 

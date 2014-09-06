@@ -43,22 +43,24 @@ public class RenderingEngine
     {
         m_pixelArray.fill(Bitmap.PURPLE);
         m_pixelArray.drawRect(10 , 10, 10, 10, Bitmap.BLACK);
+        int halfWidth = m_Display.getWidth() /2;
+        int halfHeight = m_Display.getHeight() /2;
 
         for(int i = 0 ; i < m_objectsToBeRendered.size(); i++)
         {
+            int x = (int)(m_objectsToBeRendered.get(i).getX() * halfWidth) + halfWidth;
+            int y = (int)(m_objectsToBeRendered.get(i).getY() * -halfHeight) + halfHeight;
+
             if (!(m_objectsToBeRendered.get(i).getSprite() == null))
             {
-                m_pixelArray.drawSprite(m_objectsToBeRendered.get(i).getX(),
-                                        m_objectsToBeRendered.get(i).getY(),
-                                        m_objectsToBeRendered.get(i).getSprite());
+                m_pixelArray.drawSprite(x,y,m_objectsToBeRendered.get(i).getSprite());
             }
             else
             {
-                m_pixelArray.drawRect(m_objectsToBeRendered.get(i).getX(),
-                                      m_objectsToBeRendered.get(i).getY(),
-                                      m_objectsToBeRendered.get(i).getSX(),
-                                      m_objectsToBeRendered.get(i).getSY(),
-                                      m_objectsToBeRendered.get(i).getColour());
+                int sx = (int)(m_objectsToBeRendered.get(i).getSX() * halfWidth) + x;
+                int sy = (int)(m_objectsToBeRendered.get(i).getSY() * halfWidth) + y;
+
+                m_pixelArray.drawRect(x, y, sx, sy, m_objectsToBeRendered.get(i).getColour());
             }
         }
         m_objectsToBeRendered.clear();
