@@ -19,7 +19,7 @@ public class Main
          game.render();
 
          try {
-             Thread.sleep(50);
+             Thread.sleep(0);
          } catch (InterruptedException e) {
              e.printStackTrace();
          }

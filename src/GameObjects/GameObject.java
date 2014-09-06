@@ -1,8 +1,11 @@
 package GameObjects;
 
 import Game.Input;
+import GameComponents.GameComponent;
 import Rendering.RenderingEngine;
 import Rendering.Sprite;
+
+import java.util.ArrayList;
 
 /**
  * Created by Damien on 24/8/2014.
@@ -12,15 +15,34 @@ public abstract class GameObject
     protected float m_x, m_y, m_sx, m_sy;
     protected int m_colour;
     protected Sprite m_sprite;
+    private ArrayList<GameComponent> m_components;
+
+    public GameObject()
+    {
+        m_components = new ArrayList<GameComponent>();
+    }
 
     public void render(RenderingEngine renderingEngine)
     {
-        renderingEngine.addToRender(this);
+        for(int i = 0; i < m_components.size(); i++)
+        {
+            m_components.get(i).render(renderingEngine);
+        }
     }
 
     public void update(Input input,float delta)
     {
+        for(int i = 0; i < m_components.size(); i++)
+        {
+            m_components.get(i).update(input, delta);
+        }
+    }
 
+    public void addComponent(GameComponent gameComponent)
+    {
+        gameComponent.setGameObject(this);
+        gameComponent.onAdd();
+        m_components.add(gameComponent);
     }
 
     public float getX() {

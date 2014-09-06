@@ -8,6 +8,10 @@ import java.util.Arrays;
  */
 public class Input implements KeyListener, MouseListener, MouseMotionListener
 {
+
+    private final int MOUSE_LEFT = 1;
+    private final int MOUSE_RIGHT = 2;
+
     private boolean[] m_keyInput = new boolean[65536];
     private boolean[] m_mouseButtons = new boolean[4];
     private float m_mouseX = 0.0f;

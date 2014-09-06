@@ -32,7 +32,7 @@ public class Game
         m_input = new Input(WIDTH, HEIGHT);
         m_renderingEngine = new RenderingEngine(new Display(m_input ,WIDTH, HEIGHT,"Hello World"));
         m_objectList = new ArrayList<GameObject>();
-        m_objectList.add(new SpriteTest( -0.5f, -0.5f, 0.1f, 0.1f,"res/blackSquare.bmp","res/redSquare.bmp" ));
+        m_objectList.add(new SpriteTest( -0.5f, -0.5f, 0.05f, 0.05f,"res/blackSquare.bmp","res/redSquare.bmp" ));
     }
 
     public void update(float delta)
@@ -42,7 +42,6 @@ public class Game
             m_objectList.get(i).update(m_input ,delta);
         }
 
-        m_renderingEngine.getDisplay().getFrame().setTitle(Float.toString(m_input.getMouseY()));
     }
 
     public void render()

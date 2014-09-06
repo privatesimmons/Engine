@@ -10,7 +10,7 @@ public class Bitmap
     @SuppressWarnings(value = "colours")
     public static final int RED       = 0xFFFF0000;
     public static final int GREEN     = 0xFF00FF00;
-    public static final int BLUE      = 0xFF000000;
+    public static final int BLUE      = 0xFF0000FF;
     public static final int WHITE     = 0xFFFFFFFF;
     public static final int BLACK     = 0xFF000000;
     public static final int GREY      = 0xFF808080;
@@ -87,19 +87,20 @@ public class Bitmap
 
     public void drawRect(int x, int y, int sx, int sy, int colour)
     {
-        if (((x + sx) >= m_width) || ((y + sy) >= m_height))
-        {
-            return;
-        }
+//        if (((x + sx) >= m_width) || ((y + sy) >= m_height))
+//        {
+//            return;
+//        }
         for(int j = y ; j <= (y + sy); j++ )
         {
             for(int i = x; i <= (x + sx) ; i++)
             {
-                drawPixel(j, i , colour);
+                drawPixel(i, j , colour);
             }
         }
     }
 
+    //TODO : add variable sprite draw size thing
     public void drawSprite(int x, int y, Sprite sprite)
     {
         for(int j = y; j < (y + sprite.getHeight()) ; j++)
@@ -113,7 +114,6 @@ public class Bitmap
             }
         }
     }
-
 
     public int getWidth() {
         return m_width;

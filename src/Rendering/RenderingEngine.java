@@ -13,57 +13,54 @@ import java.util.Random;
 
 public class RenderingEngine
 {
-
+    public final int CLEARCOLOUR = Bitmap.RED;
 
     private Display m_Display;
-    private ArrayList<GameObject> m_objectsToBeRendered;
     private BufferedImage m_screenBuffer;
     private Bitmap m_pixelArray;
-
+    private int halfWidth;
+    private int halfHeight;
+    private float aspectRatio ;
     Random r = new Random();
 
     public RenderingEngine(Display display)
     {
         m_Display = display;
-        m_objectsToBeRendered = new ArrayList<GameObject>();
         m_screenBuffer = new BufferedImage(m_Display.getWidth(), m_Display.getHeight(), BufferedImage.TYPE_INT_ARGB);
         m_pixelArray = new Bitmap(m_Display.getWidth(), m_Display.getHeight());
 
         m_pixelArray.setPixels(((DataBufferInt) m_screenBuffer.getRaster().getDataBuffer()).getData());
+
+        halfWidth = m_Display.getWidth() /2;
+        halfHeight = m_Display.getHeight() /2;
+        aspectRatio = m_Display.getWidth() / m_Display.getHeight();
     }
 
-    public void addToRender(GameObject go)
+
+    public void renderRect(float fx, float fy, float fsx, float fsy, int colour)
     {
-        m_objectsToBeRendered.add(go);
+        int x = (int)(fx * halfWidth) + halfWidth / (int)aspectRatio;
+        int y = (int)(fy * -halfHeight) + halfHeight;
+        int sx = (int)(fsx * halfWidth) / (int)aspectRatio;
+        int sy = (int)(fsy * halfHeight) ;
+        m_pixelArray.drawRect(x, y, sx, sy, colour);
     }
 
+    public void renderSprite(float fx,float fy, float fsx, float fsy, Sprite sprite )
+    {
+        int x = (int)(fx * halfWidth) + halfWidth;
+        int y = (int)(fy * -halfHeight) + halfHeight;
+        int sx = (int)(fsx * halfWidth) ;
+        int sy = (int)(fsy * halfHeight);
+        m_pixelArray.drawSprite(x,y,sprite);
+    }
 
 
     public void render()
     {
-        m_pixelArray.fill(Bitmap.BLACK);
         m_pixelArray.drawRect(10 , 10, 10, 10, Bitmap.BLUE);
-        int halfWidth = m_Display.getWidth() /2;
-        int halfHeight = m_Display.getHeight() /2;
-        for(int i = 0 ; i < m_objectsToBeRendered.size(); i++)
-        {
-            int x = (int)(m_objectsToBeRendered.get(i).getX() * halfWidth) + halfWidth;
-            int y = (int)(m_objectsToBeRendered.get(i).getY() * -halfHeight) + halfHeight;
-
-            if (!(m_objectsToBeRendered.get(i).getSprite() == null))
-            {
-                m_pixelArray.drawSprite(x,y,m_objectsToBeRendered.get(i).getSprite());
-            }
-            else
-            {
-                int sx = (int)(m_objectsToBeRendered.get(i).getSX() * halfWidth) + x;
-                int sy = (int)(m_objectsToBeRendered.get(i).getSY() * halfWidth) + y;
-
-                m_pixelArray.drawRect(x, y, sx, sy, m_objectsToBeRendered.get(i).getColour());
-            }
-        }
-        m_objectsToBeRendered.clear();
         m_Display.swapBuffers(m_screenBuffer);
+        m_pixelArray.fill(CLEARCOLOUR);
     }
 
     public Display getDisplay() {
