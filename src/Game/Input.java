@@ -12,17 +12,17 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener
     private final int MOUSE_LEFT = 1;
     private final int MOUSE_RIGHT = 2;
 
-    private boolean[] m_keyInput = new boolean[65536];
-    private boolean[] m_mouseButtons = new boolean[4];
-    private float m_mouseX = 0.0f;
-    private float m_mouseY = 0.0f;
+    private boolean[] keyInput = new boolean[65536];
+    private boolean[] mouseButtons = new boolean[4];
+    private float mouseX = 0.0f;
+    private float mouseY = 0.0f;
     private int halfWidth;
     private int halfHeight;
 
     public Input(int displayWidth, int displayHeight)
     {
-        Arrays.fill(m_keyInput, false);
-        Arrays.fill(m_mouseButtons, false);
+        Arrays.fill(keyInput, false);
+        Arrays.fill(mouseButtons, false);
 
         halfWidth = displayWidth / 2;
         halfHeight = displayHeight / 2;
@@ -37,7 +37,7 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener
     {
         try
         {
-            m_keyInput[event.getKeyCode()] = true;
+            keyInput[event.getKeyCode()] = true;
         }
         catch (ArrayIndexOutOfBoundsException e)
         {
@@ -47,24 +47,24 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener
 
     public void keyReleased(KeyEvent event)
     {
-        m_keyInput[event.getKeyCode()] = false;
+        keyInput[event.getKeyCode()] = false;
     }
 
     public boolean[] getKeyInput()
     {
-        return  m_keyInput;
+        return keyInput;
     }
 
     public boolean[] getMouseButtons() {
-        return m_mouseButtons;
+        return mouseButtons;
     }
 
     public float getMouseX() {
-        return m_mouseX;
+        return mouseX;
     }
 
     public float getMouseY() {
-        return m_mouseY;
+        return mouseY;
     }
 
     @Override
@@ -75,13 +75,13 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener
     @Override
     public void mousePressed(MouseEvent mouseEvent)
     {
-        m_mouseButtons[mouseEvent.getButton()] = true;
+        mouseButtons[mouseEvent.getButton()] = true;
     }
 
     @Override
     public void mouseReleased(MouseEvent mouseEvent)
     {
-        m_mouseButtons[mouseEvent.getButton()] = false;
+        mouseButtons[mouseEvent.getButton()] = false;
     }
 
     @Override
@@ -97,14 +97,14 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener
     @Override
     public void mouseDragged(MouseEvent mouseEvent)
     {
-        m_mouseX = ((float)mouseEvent.getX() - (float)halfWidth  )/ (float) halfWidth  ;
-        m_mouseY = ((float)mouseEvent.getY() - (float)halfHeight )/ (float)-halfHeight ;
+        mouseX = ((float)mouseEvent.getX() - (float)halfWidth  )/ (float) halfWidth  ;
+        mouseY = ((float)mouseEvent.getY() - (float)halfHeight )/ (float)-halfHeight ;
     }
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent)
     {
-        m_mouseX = ((float)mouseEvent.getX() - (float)halfWidth  )/ (float) halfWidth  ;
-        m_mouseY = ((float)mouseEvent.getY() - (float)halfHeight )/ (float)-halfHeight ;
+        mouseX = ((float)mouseEvent.getX() - (float)halfWidth  )/ (float) halfWidth  ;
+        mouseY = ((float)mouseEvent.getY() - (float)halfHeight )/ (float)-halfHeight ;
     }
 }
