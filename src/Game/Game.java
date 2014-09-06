@@ -29,7 +29,7 @@ public class Game
 
     private void init()
     {
-        m_input = new Input();
+        m_input = new Input(WIDTH, HEIGHT);
         m_renderingEngine = new RenderingEngine(new Display(m_input ,WIDTH, HEIGHT,"Hello World"));
         m_objectList = new ArrayList<GameObject>();
         m_objectList.add(new SpriteTest( -0.5f, -0.5f, 0.1f, 0.1f,"res/blackSquare.bmp","res/redSquare.bmp" ));
@@ -41,6 +41,8 @@ public class Game
         {
             m_objectList.get(i).update(m_input ,delta);
         }
+
+        m_renderingEngine.getDisplay().getFrame().setTitle(Float.toString(m_input.getMouseY()));
     }
 
     public void render()
@@ -58,4 +60,7 @@ public class Game
         return running;
     }
 
+    public int getDisplayWidth(){return m_renderingEngine.getDisplay().getWidth();}
+
+    public int getDisplayHeight(){return m_renderingEngine.getDisplay().getHeight();}
 }

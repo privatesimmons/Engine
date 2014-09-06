@@ -27,25 +27,28 @@ public class SpriteTest extends GameObject
 
     public void update(Input input,float delta)
     {
-        for(int i = 0; i < input.getInput().length ; i++)
-        {
-            switch (input.getInput()[i])
-            {
-                case KeyEvent.VK_UP:
-                    debuggystuff();
-                    m_y += ( delta / 700.0f);
-                    break;
-                case KeyEvent.VK_DOWN:
-                    m_y -= ( delta / 700.0f);
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    m_x+= ( delta / 700.0f);
-                    break;
-                case KeyEvent.VK_LEFT:
-                    m_x-= ( delta / 700.0f);
-                    break;
-            }
-        }
+
+                if(input.getMouseButtons()[1])
+                {
+                    m_x = input.getMouseX();
+                    m_y = input.getMouseY();
+                }
+                if(input.getKeyInput()[KeyEvent.VK_UP])
+                {
+                    m_y += (delta / 700.0f);
+                }
+                if(input.getKeyInput()[KeyEvent.VK_DOWN])
+                {
+                    m_y -= (delta / 700.0f);
+                }
+                if(input.getKeyInput()[KeyEvent.VK_RIGHT])
+                {
+                    m_x += (delta / 700.0f);
+                }
+                if(input.getKeyInput()[KeyEvent.VK_LEFT])
+                {
+                    m_x -= (delta / 700.0f);
+                }
 
 
         m_spriteCounter++;

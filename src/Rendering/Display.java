@@ -17,7 +17,6 @@ public class Display extends Canvas
     private JFrame m_frame;
     private BufferStrategy m_bufferStrategy;
     private Graphics m_graphics;
-    private Input m_inputClass;
 
     public Display(Input input ,int width, int height, String title)
     {
@@ -35,8 +34,9 @@ public class Display extends Canvas
         this.createBufferStrategy(1);
         m_bufferStrategy = this.getBufferStrategy();
         m_graphics = m_bufferStrategy.getDrawGraphics();
-        m_inputClass = new Input();
         addKeyListener(input);
+        addMouseListener(input);
+        addMouseMotionListener(input);
         requestFocus();
         m_frame.setVisible(true);
     }
@@ -47,9 +47,8 @@ public class Display extends Canvas
         m_bufferStrategy.show();
     }
 
-    public Input getInputClass()
-    {
-        return m_inputClass;
-    }
 
+    public JFrame getFrame() {
+        return m_frame;
+    }
 }

@@ -16,14 +16,13 @@ public class Main
      {
          start = System.nanoTime();
          game.update(delta);
+         game.render();
 
          try {
-             Thread.sleep(10);
+             Thread.sleep(50);
          } catch (InterruptedException e) {
              e.printStackTrace();
          }
-
-         game.render();
          end = System.nanoTime();
          delta = ((end - start)/ 1000000.0f);
          System.out.println(((end - start)/ 1000000.0));

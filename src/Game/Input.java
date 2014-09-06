@@ -1,44 +1,39 @@
 package Game;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
+import java.awt.event.*;
 import java.util.Arrays;
 
 /**
  * Created by Damien on 28/8/2014.
  */
-public class Input extends KeyAdapter
+public class Input implements KeyListener, MouseListener, MouseMotionListener
 {
-    private int[] m_input;
+    private boolean[] m_keyInput = new boolean[65536];
+    private boolean[] m_mouseButtons = new boolean[4];
+    private float m_mouseX = 0.0f;
+    private float m_mouseY = 0.0f;
+    private int halfWidth;
+    private int halfHeight;
 
-    public Input()
+    public Input(int displayWidth, int displayHeight)
     {
-        m_input = new int[10];
-        Arrays.fill(m_input, -1);
+        Arrays.fill(m_keyInput, false);
+        Arrays.fill(m_mouseButtons, false);
+
+        halfWidth = displayWidth / 2;
+        halfHeight = displayHeight / 2;
+    }
+
+    @Override
+    public void keyTyped(KeyEvent keyEvent) {
+
     }
 
     public void keyPressed(KeyEvent event)
     {
-        int i = 0;
-
-
-        //TODO Optimise inputs : they are a lot slower than id like but its okay for now
-        while(!(m_input[i] == -1))
-        {
-            i++;
-        }
         try
         {
-            boolean isInArray= false;
-            for(int j = 0; j < m_input.length; j++)
-            {
-                isInArray = isInArray || (m_input[j] == event.getKeyCode());
-            }
-            if (!isInArray)
-            {
-                m_input[i] = event.getKeyCode();
-            }
+            m_keyInput[event.getKeyCode()] = true;
         }
         catch (ArrayIndexOutOfBoundsException e)
         {
@@ -48,23 +43,64 @@ public class Input extends KeyAdapter
 
     public void keyReleased(KeyEvent event)
     {
-        int i = 0;
-        while(!(m_input[i] == event.getKeyCode()))
-        {
-            i++;
-        }
-        if (i > 9)
-        {
-            System.out.println("Key not in array was released");
-        }
-        else
-        {
-            m_input[i] = -1;
-        }
+        m_keyInput[event.getKeyCode()] = false;
     }
 
-    public int[] getInput()
+    public boolean[] getKeyInput()
     {
-        return  m_input;
+        return  m_keyInput;
+    }
+
+    public boolean[] getMouseButtons() {
+        return m_mouseButtons;
+    }
+
+    public float getMouseX() {
+        return m_mouseX;
+    }
+
+    public float getMouseY() {
+        return m_mouseY;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent mouseEvent){
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent mouseEvent)
+    {
+        m_mouseButtons[mouseEvent.getButton()] = true;
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent)
+    {
+        m_mouseButtons[mouseEvent.getButton()] = false;
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent mouseEvent){
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent mouseEvent)
+    {
+        m_mouseX = ((float)mouseEvent.getX() - (float)halfWidth  )/ (float) halfWidth  ;
+        m_mouseY = ((float)mouseEvent.getY() - (float)halfHeight )/ (float)-halfHeight ;
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent mouseEvent)
+    {
+        m_mouseX = ((float)mouseEvent.getX() - (float)halfWidth  )/ (float) halfWidth  ;
+        m_mouseY = ((float)mouseEvent.getY() - (float)halfHeight )/ (float)-halfHeight ;
     }
 }
