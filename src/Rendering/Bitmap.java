@@ -20,9 +20,9 @@ public class Bitmap
     public static final int TRANS     = 0xFFFEFEFE;
     public static final int PURPLE    = 0xFF800080;
 
-    protected int m_width;
-    protected int m_height;
-    protected int[] m_pixels;
+    protected int width;
+    protected int height;
+    protected int[] pixels;
 
     public Bitmap()
     {
@@ -31,9 +31,9 @@ public class Bitmap
 
     public Bitmap(int width, int height)
     {
-        m_width = width;
-        m_height = height;
-        m_pixels = new int[width * height];
+        this.width = width;
+        this.height = height;
+        pixels = new int[width * height];
     }
 
     public void drawPixel(int x, int y, byte a, byte r, byte g, byte b)
@@ -44,20 +44,20 @@ public class Bitmap
 
     public void fill(int colour)
     {
-        Arrays.fill(m_pixels, colour);
+        Arrays.fill(pixels, colour);
     }
 
     public void fill( byte a, byte r, byte g, byte b)
     {
-        Arrays.fill(m_pixels, createPixel(a, r, g, b));
+        Arrays.fill(pixels, createPixel(a, r, g, b));
     }
 
     public void drawPixel(int x, int y, int colour) {
-        if (x > m_width || y >= m_height || x < 0 || y < 0)
+        if (x > width || y >= height || x < 0 || y < 0)
         {
             return;
         }
-        m_pixels[x + y * m_width] = colour;
+        pixels[x + y * width] = colour;
 
     }
 
@@ -72,25 +72,22 @@ public class Bitmap
 
     public int getPixel(int x, int y)
     {
-        return m_pixels[x + y * m_width];
+        return pixels[x + y * width];
     }
 
     public int[] getPixels()
     {
-        return m_pixels;
+        return pixels;
     }
 
     public void setPixels(int[] pixels)
     {
-        m_pixels = pixels;
+        this.pixels = pixels;
     }
 
     public void drawRect(int x, int y, int sx, int sy, int colour)
     {
-//        if (((x + sx) >= m_width) || ((y + sy) >= m_height))
-//        {
-//            return;
-//        }
+
         for(int j = y ; j <= (y + sy); j++ )
         {
             for(int i = x; i <= (x + sx) ; i++)
@@ -116,10 +113,10 @@ public class Bitmap
     }
 
     public int getWidth() {
-        return m_width;
+        return width;
     }
 
     public int getHeight() {
-        return m_height;
+        return height;
     }
 }

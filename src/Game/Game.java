@@ -16,10 +16,10 @@ public class Game
     private final int WIDTH = 800;
     private final int HEIGHT = 600;
 
-    private RenderingEngine m_renderingEngine;
-    private ArrayList<GameObject> m_objectList;
+    private RenderingEngine renderingEngine;
+    private ArrayList<GameObject> objectList;
     private Boolean running;
-    private Input m_input;
+    private Input input;
 
     public Game()
     {
@@ -29,28 +29,28 @@ public class Game
 
     private void init()
     {
-        m_input = new Input(WIDTH, HEIGHT);
-        m_renderingEngine = new RenderingEngine(new Display(m_input ,WIDTH, HEIGHT,"Hello World"));
-        m_objectList = new ArrayList<GameObject>();
-        m_objectList.add(new SpriteTest( -0.5f, -0.5f, 0.05f, 0.05f,"res/blackSquare.bmp","res/redSquare.bmp" ));
+        input = new Input(WIDTH, HEIGHT);
+        renderingEngine = new RenderingEngine(new Display(input,WIDTH, HEIGHT,"Hello World"));
+        objectList = new ArrayList<GameObject>();
+        objectList.add(new SpriteTest(-0.5f, -0.5f, 0.05f, 0.05f, "res/blackSquare.bmp", "res/redSquare.bmp"));
     }
 
     public void update(float delta)
     {
-        for(int i = 0; i < m_objectList.size(); i++ )
+        for(int i = 0; i < objectList.size(); i++ )
         {
-            m_objectList.get(i).update(m_input ,delta);
+            objectList.get(i).update(input,delta);
         }
 
     }
 
     public void render()
     {
-        for(int i = 0; i < m_objectList.size(); i++ )
+        for(int i = 0; i < objectList.size(); i++ )
         {
-            m_objectList.get(i).render(m_renderingEngine);
+            objectList.get(i).render(renderingEngine);
         }
-        m_renderingEngine.render();
+        renderingEngine.render();
     }
 
 
@@ -59,7 +59,7 @@ public class Game
         return running;
     }
 
-    public int getDisplayWidth(){return m_renderingEngine.getDisplay().getWidth();}
+    public int getDisplayWidth(){return renderingEngine.getDisplay().getWidth();}
 
-    public int getDisplayHeight(){return m_renderingEngine.getDisplay().getHeight();}
+    public int getDisplayHeight(){return renderingEngine.getDisplay().getHeight();}
 }

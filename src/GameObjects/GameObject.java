@@ -12,29 +12,29 @@ import java.util.ArrayList;
  */
 public abstract class GameObject
 {
-    protected float m_x, m_y, m_sx, m_sy;
-    protected int m_colour;
-    protected Sprite m_sprite;
-    private ArrayList<GameComponent> m_components;
+    protected float posX, posY, sizeX, sizeY;
+    protected int colour;
+    protected Sprite sprite;
+    private ArrayList<GameComponent> components;
 
     public GameObject()
     {
-        m_components = new ArrayList<GameComponent>();
+        components = new ArrayList<GameComponent>();
     }
 
     public void render(RenderingEngine renderingEngine)
     {
-        for(int i = 0; i < m_components.size(); i++)
+        for(int i = 0; i < components.size(); i++)
         {
-            m_components.get(i).render(renderingEngine);
+            components.get(i).render(renderingEngine);
         }
     }
 
     public void update(Input input,float delta)
     {
-        for(int i = 0; i < m_components.size(); i++)
+        for(int i = 0; i < components.size(); i++)
         {
-            m_components.get(i).update(input, delta);
+            components.get(i).update(input, delta);
         }
     }
 
@@ -42,54 +42,52 @@ public abstract class GameObject
     {
         gameComponent.setGameObject(this);
         gameComponent.onAdd();
-        m_components.add(gameComponent);
+        components.add(gameComponent);
     }
 
     public float getX() {
-        return m_x;
+        return posX;
     }
 
-    public void setX(int m_x) {
-        this.m_x = m_x;
+    public void setX(int posX) {
+        this.posX = posX;
     }
 
     public float getY() {
-        return m_y;
+        return posY;
     }
 
-    public void setY(int m_y) {
-        this.m_y = m_y;
+    public void setY(int posY) {
+        this.posY = posY;
     }
 
     public float getSX() {
-        return m_sx;
+        return sizeX;
     }
 
-    public void setSX(int m_sx) {
-        this.m_sx = m_sx;
-    }
+    public void setSX(int sizeX) { this.sizeX = sizeX;}
 
     public float getSY() {
-        return m_sy;
+        return sizeY;
     }
 
-    public void setSY(int m_sy) {
-        this.m_sy = m_sy;
+    public void setSY(int sizeY) {
+        this.sizeY = sizeY;
     }
 
     public int getColour() {
-        return m_colour;
+        return colour;
     }
 
-    public void setColour(int m_colour) {
-        this.m_colour = m_colour;
+    public void setColour(int colour) {
+        this.colour = colour;
     }
 
     public Sprite getSprite() {
-        return m_sprite;
+        return sprite;
     }
 
-    public void setSprite(Sprite m_sprite) {
-        this.m_sprite = m_sprite;
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
     }
 }

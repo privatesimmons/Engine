@@ -1,10 +1,7 @@
 package Rendering;
 
-import GameObjects.GameObject;
-
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -15,9 +12,9 @@ public class RenderingEngine
 {
     public final int CLEARCOLOUR = Bitmap.RED;
 
-    private Display m_Display;
-    private BufferedImage m_screenBuffer;
-    private Bitmap m_pixelArray;
+    private Display display;
+    private BufferedImage screenBuffer;
+    private Bitmap pixelArray;
     private int halfWidth;
     private int halfHeight;
     private float aspectRatio ;
@@ -25,25 +22,25 @@ public class RenderingEngine
 
     public RenderingEngine(Display display)
     {
-        m_Display = display;
-        m_screenBuffer = new BufferedImage(m_Display.getWidth(), m_Display.getHeight(), BufferedImage.TYPE_INT_ARGB);
-        m_pixelArray = new Bitmap(m_Display.getWidth(), m_Display.getHeight());
+        this.display = display;
+        screenBuffer = new BufferedImage(this.display.getWidth(), this.display.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        pixelArray = new Bitmap(this.display.getWidth(), this.display.getHeight());
 
-        m_pixelArray.setPixels(((DataBufferInt) m_screenBuffer.getRaster().getDataBuffer()).getData());
+        pixelArray.setPixels(((DataBufferInt) screenBuffer.getRaster().getDataBuffer()).getData());
 
-        halfWidth = m_Display.getWidth() /2;
-        halfHeight = m_Display.getHeight() /2;
-        aspectRatio = m_Display.getWidth() / m_Display.getHeight();
+        halfWidth = this.display.getWidth() /2;
+        halfHeight = this.display.getHeight() /2;
+        aspectRatio = this.display.getWidth() / this.display.getHeight();
     }
 
 
     public void renderRect(float fx, float fy, float fsx, float fsy, int colour)
     {
-        int x = (int)(fx * halfWidth) + halfWidth / (int)aspectRatio;
+        int x = (int)(fx * halfWidth) + halfWidth;
         int y = (int)(fy * -halfHeight) + halfHeight;
-        int sx = (int)(fsx * halfWidth) / (int)aspectRatio;
+        int sx = (int)(fsx * halfWidth) ;
         int sy = (int)(fsy * halfHeight) ;
-        m_pixelArray.drawRect(x, y, sx, sy, colour);
+        pixelArray.drawRect(x, y, sx, sy, colour);
     }
 
     public void renderSprite(float fx,float fy, float fsx, float fsy, Sprite sprite )
@@ -52,19 +49,19 @@ public class RenderingEngine
         int y = (int)(fy * -halfHeight) + halfHeight;
         int sx = (int)(fsx * halfWidth) ;
         int sy = (int)(fsy * halfHeight);
-        m_pixelArray.drawSprite(x,y,sprite);
+        pixelArray.drawSprite(x, y, sprite);
     }
 
 
     public void render()
     {
-        m_pixelArray.drawRect(10 , 10, 10, 10, Bitmap.BLUE);
-        m_Display.swapBuffers(m_screenBuffer);
-        m_pixelArray.fill(CLEARCOLOUR);
+        pixelArray.drawRect(10, 10, 10, 10, Bitmap.BLUE);
+        display.swapBuffers(screenBuffer);
+        pixelArray.fill(CLEARCOLOUR);
     }
 
     public Display getDisplay() {
-        return m_Display;
+        return display;
     }
 
 }

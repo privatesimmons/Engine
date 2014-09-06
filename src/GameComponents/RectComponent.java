@@ -7,11 +7,11 @@ import Rendering.RenderingEngine;
  */
 public class RectComponent extends GameComponent
 {
-    private int m_colour;
+    private int colour;
 
     public RectComponent(int colour)
     {
-        m_colour = colour;
+        this.colour = colour;
     }
 
     @Override
@@ -19,14 +19,14 @@ public class RectComponent extends GameComponent
     {
         renderingEngine.renderRect(getGameObject().getX(), getGameObject().getY(),
                                    getGameObject().getSX(), getGameObject().getSY(),
-                                   m_colour);
+                colour);
     }
 
     public int getColour() {
-        return m_colour;
+        return colour;
     }
 
     public void setColour(int m_colour) {
-        this.m_colour = m_colour;
+        this.colour = m_colour;
     }
 }

@@ -9,12 +9,13 @@ import Rendering.RenderingEngine;
  */
 public abstract class GameComponent
 {
-    private GameObject m_gameObject;
+    private GameObject gameObject;
 
     public void update(Input input, float delta){}
     public void render(RenderingEngine renderingEngine){}
     public void onAdd(){}
-    public void setGameObject(GameObject gameObject){m_gameObject = gameObject;}
-    public GameObject getGameObject(){return m_gameObject;}
+    public void setGameObject(GameObject gameObject){
+        this.gameObject = gameObject;}
+    public GameObject getGameObject(){return gameObject;}
 
 }
