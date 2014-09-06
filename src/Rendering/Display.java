@@ -10,14 +10,12 @@ import java.awt.image.BufferedImage;
 /**
  * Created by damien on 2014/08/26.
  */
-public class Display extends Canvas
-{
+public class Display extends Canvas {
     private JFrame frame;
     private BufferStrategy bufferStrat;
     private Graphics graphics;
 
-    public Display(Input input ,int width, int height, String title)
-    {
+    public Display(Input input, int width, int height, String title) {
 
 
         frame = new JFrame(title);
@@ -39,8 +37,7 @@ public class Display extends Canvas
         frame.setVisible(true);
     }
 
-    public void swapBuffers(BufferedImage image)
-    {
+    public void swapBuffers(BufferedImage image) {
         graphics.drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null);
         bufferStrat.show();
     }

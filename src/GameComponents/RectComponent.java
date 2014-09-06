@@ -5,20 +5,17 @@ import Rendering.RenderingEngine;
 /**
  * Created by damien on 2014/09/06.
  */
-public class RectComponent extends GameComponent
-{
+public class RectComponent extends GameComponent {
     private int colour;
 
-    public RectComponent(int colour)
-    {
+    public RectComponent(int colour) {
         this.colour = colour;
     }
 
     @Override
-    public void render(RenderingEngine renderingEngine)
-    {
+    public void render(RenderingEngine renderingEngine) {
         renderingEngine.renderRect(getGameObject().getX(), getGameObject().getY(),
-                                   getGameObject().getSX(), getGameObject().getSY(),
+                getGameObject().getSX(), getGameObject().getSY(),
                 colour);
     }
 

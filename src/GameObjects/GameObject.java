@@ -10,36 +10,29 @@ import java.util.ArrayList;
 /**
  * Created by Damien on 24/8/2014.
  */
-public abstract class GameObject
-{
+public abstract class GameObject {
     protected float posX, posY, sizeX, sizeY;
     protected int colour;
     protected Sprite sprite;
     private ArrayList<GameComponent> components;
 
-    public GameObject()
-    {
+    public GameObject() {
         components = new ArrayList<GameComponent>();
     }
 
-    public void render(RenderingEngine renderingEngine)
-    {
-        for(int i = 0; i < components.size(); i++)
-        {
-            components.get(i).render(renderingEngine);
+    public void render(RenderingEngine renderingEngine) {
+        for (GameComponent component : components) {
+            component.render(renderingEngine);
         }
     }
 
-    public void update(Input input,float delta)
-    {
-        for(int i = 0; i < components.size(); i++)
-        {
-            components.get(i).update(input, delta);
+    public void update(Input input, float delta) {
+        for (GameComponent component : components) {
+            component.update(input, delta);
         }
     }
 
-    public void addComponent(GameComponent gameComponent)
-    {
+    public void addComponent(GameComponent gameComponent) {
         gameComponent.setGameObject(this);
         gameComponent.onAdd();
         components.add(gameComponent);
@@ -65,7 +58,9 @@ public abstract class GameObject
         return sizeX;
     }
 
-    public void setSX(int sizeX) { this.sizeX = sizeX;}
+    public void setSX(int sizeX) {
+        this.sizeX = sizeX;
+    }
 
     public float getSY() {
         return sizeY;

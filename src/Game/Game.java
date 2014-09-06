@@ -11,8 +11,7 @@ import java.util.ArrayList;
 /**
  * Created by Damien on 24/8/2014.
  */
-public class Game
-{
+public class Game {
     private final int WIDTH = 800;
     private final int HEIGHT = 600;
 
@@ -21,45 +20,42 @@ public class Game
     private Boolean running;
     private Input input;
 
-    public Game()
-    {
+    public Game() {
         this.init();
         running = true;
     }
 
-    private void init()
-    {
+    private void init() {
         input = new Input(WIDTH, HEIGHT);
-        renderingEngine = new RenderingEngine(new Display(input,WIDTH, HEIGHT,"Hello World"));
+        renderingEngine = new RenderingEngine(new Display(input, WIDTH, HEIGHT, "Hello World"));
         objectList = new ArrayList<GameObject>();
         objectList.add(new SpriteTest(-0.5f, -0.5f, 0.05f, 0.05f, "res/blackSquare.bmp", "res/redSquare.bmp"));
     }
 
-    public void update(float delta)
-    {
-        for(int i = 0; i < objectList.size(); i++ )
-        {
-            objectList.get(i).update(input,delta);
+    public void update(float delta) {
+        for (GameObject object : objectList) {
+            object.update(input, delta);
         }
 
     }
 
-    public void render()
-    {
-        for(int i = 0; i < objectList.size(); i++ )
-        {
-            objectList.get(i).render(renderingEngine);
+    public void render() {
+        for (GameObject object : objectList) {
+            object.render(renderingEngine);
         }
         renderingEngine.render();
     }
 
 
-    public Boolean getRunning()
-    {
+    public Boolean getRunning() {
         return running;
     }
 
-    public int getDisplayWidth(){return renderingEngine.getDisplay().getWidth();}
+    public int getDisplayWidth() {
+        return renderingEngine.getDisplay().getWidth();
+    }
 
-    public int getDisplayHeight(){return renderingEngine.getDisplay().getHeight();}
+    public int getDisplayHeight() {
+        return renderingEngine.getDisplay().getHeight();
+    }
 }
